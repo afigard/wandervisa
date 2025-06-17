@@ -4,6 +4,9 @@ import { ReactNode } from "react";
 export const metadata = {
   title: "WanderVisa",
   description: "Visa checker for global travelers",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
