@@ -67,15 +67,15 @@ export default function Home() {
             className="w-full p-2 bg-[#1a1a1a] text-white border border-[#444] rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="">Select Country</option>
-            {[...new Set(visaData.map((d) => d.destination_country))].map(
-              (country) => (
+            {[...new Set(visaData.map((d) => d.destination_country))]
+              .sort((a, b) => a.localeCompare(b))
+              .map((country) => (
                 <option key={country} value={country}>
                   {countryMeta[country as keyof typeof countryMeta]?.emoji ||
                     ""}{" "}
                   {country}
                 </option>
-              )
-            )}
+              ))}
           </select>
         </div>
 
