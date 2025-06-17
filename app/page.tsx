@@ -33,10 +33,11 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-6">
-      <h1 className="text-3xl font-bold mb-4">WanderVisa – Visa Checker</h1>
+      <h1 className="text-3xl font-bold">WanderVisa</h1>
+      <h1 className="text-xl font-medium mb-10 text-gray-400">Visa Checker</h1>
       <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
         <div>
-          <label className="block text-sm font-medium">
+          <label className="block text-sm font-medium mb-0.5">
             Your Passport Country
           </label>
           <select
@@ -58,7 +59,7 @@ export default function Home() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium">
+          <label className="block text-sm font-medium mb-0.5">
             Destination Country
           </label>
           <select
