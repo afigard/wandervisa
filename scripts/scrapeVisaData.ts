@@ -4,7 +4,13 @@ import fs from "fs";
 import countryMeta from "../lib/countryMeta";
 
 const BASE_URL = "https://en.wikipedia.org/wiki/Visa_requirements_for_";
-const passportCountries = ["France", "United States"];
+const passportCountries = [
+  "France",
+  "Italy",
+  "Lebanon",
+  "Singapore",
+  "United States",
+];
 
 async function scrapeCountry(passportCountry: string) {
   const slug =
