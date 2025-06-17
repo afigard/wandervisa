@@ -91,11 +91,11 @@ export default function Home() {
         <div className="mt-8 border p-4 rounded w-full max-w-md">
           <h2 className="text-xl font-semibold mb-2">Result</h2>
           <p>
-            <strong>Status:</strong> {result.visa_requirement}
+            <strong>Visa Requirement:</strong> {result.visa_requirement}
           </p>
           {result.notes && (
             <p>
-              <strong>Notes:</strong> {result.notes}
+              <strong>Allowed Stay:</strong> {result.notes}
             </p>
           )}
         </div>
