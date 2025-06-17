@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import visaData from "@/lib/visaData";
+import countryMeta from "@/lib/countryMeta";
 
 export default function Home() {
   const [passportCountry, setPassportCountry] = useState("");
@@ -47,7 +47,11 @@ export default function Home() {
             <option value="">Select Country</option>
             {[...new Set(visaData.map((d) => d.passport_country))].map(
               (country) => (
-                <option key={country}>{country}</option>
+                <option key={country} value={country}>
+                  {countryMeta[country as keyof typeof countryMeta]?.emoji ||
+                    ""}{" "}
+                  {country}
+                </option>
               )
             )}
           </select>
@@ -65,7 +69,11 @@ export default function Home() {
             <option value="">Select Country</option>
             {[...new Set(visaData.map((d) => d.destination_country))].map(
               (country) => (
-                <option key={country}>{country}</option>
+                <option key={country} value={country}>
+                  {countryMeta[country as keyof typeof countryMeta]?.emoji ||
+                    ""}{" "}
+                  {country}
+                </option>
               )
             )}
           </select>
