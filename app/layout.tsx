@@ -2,8 +2,29 @@ import "../styles/globals.css";
 import { ReactNode } from "react";
 
 export const metadata = {
-  title: "WanderVisa",
-  description: "Visa checker for global travelers",
+  title: "WanderVisa – Fast & Simple Visa Checker for Travelers",
+  description:
+    "Instantly check visa requirements between countries. Built for digital nomads, backpackers, and global travelers. Free and fast.",
+  keywords: [
+    "visa checker",
+    "travel visa",
+    "visa requirements",
+    "digital nomad",
+    "remote work travel",
+    "travel planning",
+    "WanderVisa",
+  ],
+  authors: [{ name: "Adrien Figard" }],
+  creator: "Adrien Figard",
+  openGraph: {
+    title: "WanderVisa – Fast Visa Checker for Travelers",
+    description:
+      "Find visa rules between countries in seconds. WanderVisa is your no-fuss travel tool.",
+    url: "https://wandervisa.vercel.app/",
+    siteName: "WanderVisa",
+    locale: "en_US",
+    type: "website",
+  },
   icons: {
     icon: "/favicon.png",
   },
