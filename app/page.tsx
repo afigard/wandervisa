@@ -4,6 +4,38 @@ import { useState } from "react";
 import visaData from "@/lib/visaData";
 import countryMeta from "@/lib/countryMeta";
 
+const getVisaEmoji = (requirement: string) => {
+  const r = requirement.toLowerCase();
+
+  if (
+    r.includes("e-visa") ||
+    r.includes("evisa") ||
+    r.includes("electronic visa")
+  )
+    return "💻";
+  if (
+    r.includes("electronic travel authorisation") ||
+    r.includes("electronic travel authority") ||
+    r.includes("eta")
+  )
+    return "🌐";
+  if (r.includes("freedom")) return "🆓";
+  if (r.includes("visa not required")) return "✅";
+  if (r.includes("visa on arrival")) return "🛬";
+  if (r.includes("visa required")) return "❌";
+  if (r.includes("permit")) return "📄";
+  if (r.includes("restricted")) return "⛔";
+
+  return "❓";
+};
+
+const getNotesEmoji = (notes: string) => {
+  const r = notes.toLowerCase();
+  if (r.includes("days") || r.includes("month") || r.includes("months"))
+    return "⏳";
+  return "";
+};
+
 export default function Home() {
   const [passportCountry, setPassportCountry] = useState("");
   const [destinationCountry, setDestinationCountry] = useState("");
@@ -92,11 +124,13 @@ export default function Home() {
         <div className="mt-8 border p-4 rounded w-full max-w-md">
           <h2 className="text-xl font-semibold mb-2">Result</h2>
           <p>
-            <strong>Visa Requirement:</strong> {result.visa_requirement}
+            <strong>Visa Requirement:</strong>{" "}
+            {getVisaEmoji(result.visa_requirement)} {result.visa_requirement}
           </p>
           {result.notes && (
             <p>
-              <strong>Allowed Stay:</strong> {result.notes}
+              <strong>Allowed Stay:</strong> {getNotesEmoji(result.notes)}{" "}
+              {result.notes}
             </p>
           )}
         </div>
