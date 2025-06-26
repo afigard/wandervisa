@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FaPassport, FaMoon, FaSun } from "react-icons/fa";
 import visaData from "@/lib/visaData";
 import countryMeta from "@/lib/countryMeta";
 
@@ -46,6 +47,30 @@ export default function Home() {
     notes: string;
   } | null>(null);
 
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    setDark(prefersDark);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--background",
+      dark ? "#0a0a0a" : "#ffffff"
+    );
+    document.documentElement.style.setProperty(
+      "--foreground",
+      dark ? "#ededed" : "#171717"
+    );
+    document.documentElement.style.setProperty(
+      "--card-bg",
+      dark ? "#1b1b1b" : "#f9f9f9"
+    );
+  }, [dark]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const entry = visaData.find(
@@ -64,77 +89,121 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-6">
-      <h1 className="text-3xl font-bold">WanderVisa</h1>
-      <h1 className="text-xl font-medium mb-10 text-gray-400">Visa Checker</h1>
-      <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-0.5">
-            Your Passport Country
-          </label>
-          <select
-            value={passportCountry}
-            onChange={(e) => setPassportCountry(e.target.value)}
-            className="w-full p-2 bg-[#1a1a1a] text-white border border-[#444] rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <option value="">Select Country</option>
-            {[...new Set(visaData.map((d) => d.passport_country))].map(
-              (country) => (
-                <option key={country} value={country}>
-                  {countryMeta[country as keyof typeof countryMeta]?.emoji ||
-                    ""}{" "}
-                  {country}
-                </option>
-              )
-            )}
-          </select>
+    <main className="min-h-dvh flex flex-col justify-between px-4 py-6 sm:py-8">
+      <header className="flex justify-between items-center w-full max-w-7xl mx-auto px-2 sm:px-4 sm:py-2">
+        <div className="flex items-center space-x-2">
+          <FaPassport className="text-2xl text-indigo-500" />
         </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-0.5">
-            Destination Country
-          </label>
-          <select
-            value={destinationCountry}
-            onChange={(e) => setDestinationCountry(e.target.value)}
-            className="w-full p-2 bg-[#1a1a1a] text-white border border-[#444] rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <option value="">Select Country</option>
-            {[...new Set(visaData.map((d) => d.destination_country))]
-              .sort((a, b) => a.localeCompare(b))
-              .map((country) => (
-                <option key={country} value={country}>
-                  {countryMeta[country as keyof typeof countryMeta]?.emoji ||
-                    ""}{" "}
-                  {country}
-                </option>
-              ))}
-          </select>
-        </div>
-
         <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700"
+          onClick={() => setDark(!dark)}
+          className="text-foreground hover:opacity-80 transition cursor-pointer"
         >
-          Check Visa Requirement
-        </button>
-      </form>
-
-      {result && (
-        <div className="mt-8 border p-4 rounded w-full max-w-md">
-          <h2 className="text-xl font-semibold mb-2">Result</h2>
-          <p>
-            <strong>Visa Requirement:</strong>{" "}
-            {getVisaEmoji(result.visa_requirement)} {result.visa_requirement}
-          </p>
-          {result.notes && (
-            <p>
-              <strong>Allowed Stay:</strong> {getNotesEmoji(result.notes)}{" "}
-              {result.notes}
-            </p>
+          {dark ? (
+            <FaSun size={32} className="h-5 w-5 sm:h-7 sm:w-7" />
+          ) : (
+            <FaMoon size={32} className="h-5 w-5 sm:h-7 sm:w-7" />
           )}
-        </div>
-      )}
+        </button>
+      </header>
+
+      <div className="flex-grow flex flex-col items-center justify-center">
+        <h1 className="text-3xl font-bold mt-6">WanderVisa</h1>
+        <h2
+          className={`text-xl font-medium mb-10 text-gray-400 ${
+            dark ? "text-neutral-400" : "text-gray-500"
+          }`}
+        >
+          Visa Checker
+        </h2>
+
+        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-0.5">
+              Your Passport Country
+            </label>
+            <select
+              value={passportCountry}
+              onChange={(e) => setPassportCountry(e.target.value)}
+              className={`w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                dark
+                  ? "bg-[#1a1a1a] text-white border-[#444]"
+                  : "bg-white text-black border-gray-300"
+              }`}
+            >
+              <option value="">Select Country</option>
+              {[...new Set(visaData.map((d) => d.passport_country))].map(
+                (country) => (
+                  <option key={country} value={country}>
+                    {countryMeta[country as keyof typeof countryMeta]?.emoji ||
+                      ""}{" "}
+                    {country}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-0.5">
+              Destination Country
+            </label>
+            <select
+              value={destinationCountry}
+              onChange={(e) => setDestinationCountry(e.target.value)}
+              className={`w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                dark
+                  ? "bg-[#1a1a1a] text-white border-[#444]"
+                  : "bg-white text-black border-gray-300"
+              }`}
+            >
+              <option value="">Select Country</option>
+              {[...new Set(visaData.map((d) => d.destination_country))]
+                .sort((a, b) => a.localeCompare(b))
+                .map((country) => (
+                  <option key={country} value={country}>
+                    {countryMeta[country as keyof typeof countryMeta]?.emoji ||
+                      ""}{" "}
+                    {country}
+                  </option>
+                ))}
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700"
+          >
+            Check Visa Requirement
+          </button>
+        </form>
+
+        {result && (
+          <div className="mt-8 border p-4 rounded w-full max-w-md">
+            <h2 className="text-xl font-semibold mb-2">Result</h2>
+            <p>
+              <strong>Visa Requirement:</strong>{" "}
+              {getVisaEmoji(result.visa_requirement)} {result.visa_requirement}
+            </p>
+            {result.notes && (
+              <p>
+                <strong>Allowed Stay:</strong> {getNotesEmoji(result.notes)}{" "}
+                {result.notes}
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+
+      <footer className="flex justify-between items-center text-xs text-neutral-500 px-4 max-w-7xl mx-auto w-full mt-8">
+        <span>© {new Date().getFullYear()} WanderTools.</span>
+        <a
+          href="https://instagram.com/ad.fgrd"
+          target="_blank"
+          className="underline hover:opacity-80"
+        >
+          Contact
+        </a>
+      </footer>
     </main>
   );
 }
