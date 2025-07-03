@@ -106,7 +106,7 @@ export default function Home() {
         </button>
       </header>
 
-      <div className="flex-grow flex flex-col items-center justify-center">
+      <div className="flex-grow flex flex-col items-center justify-center px-2">
         <h1 className="text-3xl font-bold mt-6">WanderVisa</h1>
         <h2
           className={`text-xl font-medium mb-10 text-gray-400 ${
@@ -124,7 +124,7 @@ export default function Home() {
             <select
               value={passportCountry}
               onChange={(e) => setPassportCountry(e.target.value)}
-              className={`w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+              className={`w-full p-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                 dark
                   ? "bg-[#1a1a1a] text-white border-[#444]"
                   : "bg-white text-black border-gray-300"
@@ -150,7 +150,7 @@ export default function Home() {
             <select
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
-              className={`w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+              className={`w-full p-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                 dark
                   ? "bg-[#1a1a1a] text-white border-[#444]"
                   : "bg-white text-black border-gray-300"
@@ -171,14 +171,14 @@ export default function Home() {
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700"
+            className="w-full bg-indigo-600 text-white p-2 rounded-xl hover:bg-indigo-700"
           >
             Check Visa Requirement
           </button>
         </form>
 
         {result && (
-          <div className="mt-8 border p-4 rounded w-full max-w-md">
+          <div className="mt-8 border p-4 rounded-xl w-full max-w-md">
             <h2 className="text-xl font-semibold mb-2">Result</h2>
             <p>
               <strong>Visa Requirement:</strong>{" "}
