@@ -109,8 +109,8 @@ export default function Home() {
       <div className="flex-grow flex flex-col items-center justify-center px-2">
         <h1 className="text-3xl font-bold mt-6">WanderVisa</h1>
         <h2
-          className={`text-xl font-medium mb-10 text-gray-400 ${
-            dark ? "text-neutral-400" : "text-gray-500"
+          className={`text-xl font-medium mb-10 ${
+            dark ? "text-neutral-400" : "text-neutral-600"
           }`}
         >
           Visa Checker
