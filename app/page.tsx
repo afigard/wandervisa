@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { FaPassport, FaMoon, FaSun } from "react-icons/fa";
 import visaData from "@/lib/visaData";
 import countryMeta from "@/lib/countryMeta";
+import Link from "next/link";
 
 const getVisaEmoji = (requirement: string) => {
   const r = requirement.toLowerCase();
@@ -91,9 +92,9 @@ export default function Home() {
   return (
     <main className="min-h-dvh flex flex-col justify-between px-4 py-6 sm:py-8">
       <header className="flex justify-between items-center w-full max-w-7xl mx-auto px-2 sm:px-4 sm:py-2">
-        <div className="flex items-center space-x-2">
+        <Link href="https://www.wandertools.online/">
           <FaPassport className="text-2xl text-indigo-500" />
-        </div>
+        </Link>
         <button
           onClick={() => setDark(!dark)}
           className="text-foreground hover:opacity-80 transition cursor-pointer"
@@ -202,13 +203,13 @@ export default function Home() {
 
       <footer className="flex justify-between items-center text-xs text-neutral-500 px-4 max-w-7xl mx-auto w-full mt-8">
         <span>© {new Date().getFullYear()} WanderTools.</span>
-        <a
+        <Link
           href="https://instagram.com/ad.fgrd"
           target="_blank"
           className="underline hover:opacity-80"
         >
           Contact
-        </a>
+        </Link>
       </footer>
     </main>
   );
