@@ -172,7 +172,8 @@ export default function Home() {
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white p-2 rounded-xl hover:bg-indigo-700"
+            disabled={!passportCountry || !destinationCountry}
+            className="w-full bg-indigo-500 text-white p-2 rounded-xl hover:bg-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Check Visa Requirement
           </button>
