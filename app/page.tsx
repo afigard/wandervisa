@@ -202,7 +202,7 @@ export default function Home() {
       </div>
 
       <footer className="flex justify-between items-center text-xs text-neutral-500 px-4 max-w-7xl mx-auto w-full mt-8">
-        <span>© {new Date().getFullYear()} WanderTools.</span>
+        <span>© {new Date().getFullYear()} WanderVisa.</span>
         <Link
           href="https://instagram.com/ad.fgrd"
           target="_blank"
