@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaPassport, FaMoon, FaSun } from "react-icons/fa";
+import { FaPassport, FaMoon, FaSun } from "react-icons/fa6";
 import visaData from "@/lib/visaData";
 import countryMeta from "@/lib/countryMeta";
 import Link from "next/link";
@@ -93,16 +93,16 @@ export default function Home() {
     <main className="min-h-dvh flex flex-col justify-between px-4 py-6 sm:py-8">
       <header className="flex justify-between items-center w-full max-w-7xl mx-auto px-2 sm:px-4 sm:py-2">
         <Link href="https://www.wandertools.online/">
-          <FaPassport className="text-2xl text-indigo-500" />
+          <FaPassport className="text-2xl sm:text-3xl text-indigo-500" />
         </Link>
         <button
           onClick={() => setDark(!dark)}
           className="text-foreground hover:opacity-80 transition cursor-pointer"
         >
           {dark ? (
-            <FaSun size={32} className="h-5 w-5 sm:h-7 sm:w-7" />
+            <FaSun size={32} className="h-6 w-6 sm:h-8 sm:w-8" />
           ) : (
-            <FaMoon size={32} className="h-5 w-5 sm:h-7 sm:w-7" />
+            <FaMoon size={32} className="h-6 w-6 sm:h-8 sm:w-8" />
           )}
         </button>
       </header>
