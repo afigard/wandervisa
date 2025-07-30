@@ -107,8 +107,8 @@ export default function Home() {
         </button>
       </header>
 
-      <div className="flex-grow flex flex-col items-center justify-center px-2">
-        <h1 className="text-3xl font-bold mt-6">WanderVisa</h1>
+      <div className="flex-grow flex flex-col items-center justify-center pt-6 pb-10 px-2">
+        <h1 className="text-3xl font-bold">WanderVisa</h1>
         <h2
           className={`text-xl font-medium mb-10 ${
             dark ? "text-neutral-400" : "text-neutral-600"
