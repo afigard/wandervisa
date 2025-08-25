@@ -5,6 +5,7 @@ import { FaPassport, FaMoon, FaSun } from "react-icons/fa6";
 import visaData from "@/lib/visaData";
 import countryMeta from "@/lib/countryMeta";
 import Link from "next/link";
+import FeedbackForm from "./components/FeedbackForm";
 
 const getVisaEmoji = (requirement: string) => {
   const r = requirement.toLowerCase();
@@ -125,7 +126,7 @@ export default function Home() {
             <select
               value={passportCountry}
               onChange={(e) => setPassportCountry(e.target.value)}
-              className={`w-full p-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+              className={`w-full p-2 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer ${
                 dark
                   ? "bg-neutral-900 text-white border-neutral-700"
                   : "bg-neutral-100 text-black border-neutral-300"
@@ -151,7 +152,7 @@ export default function Home() {
             <select
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
-              className={`w-full p-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+              className={`w-full p-2 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer ${
                 dark
                   ? "bg-neutral-900 text-white border-neutral-700"
                   : "bg-neutral-100 text-black border-neutral-300"
@@ -173,7 +174,7 @@ export default function Home() {
           <button
             type="submit"
             disabled={!passportCountry || !destinationCountry}
-            className="w-full bg-indigo-500 text-white p-2 rounded-xl hover:bg-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full bg-indigo-500 text-white p-2 rounded-2xl hover:bg-indigo-600 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
           >
             Check Visa Requirement
           </button>
@@ -204,13 +205,7 @@ export default function Home() {
 
       <footer className="flex justify-between items-center text-xs text-neutral-500 px-4 max-w-7xl mx-auto w-full mt-8">
         <span>© {new Date().getFullYear()} WanderVisa.</span>
-        <Link
-          href="https://instagram.com/ad.fgrd"
-          target="_blank"
-          className="underline hover:opacity-80"
-        >
-          Contact
-        </Link>
+        <FeedbackForm appName="WanderVisa" dark={dark} />
       </footer>
     </main>
   );
